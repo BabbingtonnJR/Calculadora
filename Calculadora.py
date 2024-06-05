@@ -40,9 +40,8 @@ def menuFuncaoExponencial():
 def menuMatriz():
     print(f"\n1 - Cálculo Determinante")
     print("2 - Matriz A x Matriz B")
-    print("3 - Matriz B x Matriz A")
-    print("4 - Matriz Transposta")
-    print(f"5 - Voltar\n")
+    print("3 - Matriz Transposta")
+    print(f"4 - Voltar\n")
     escolha = int(input("Escolha uma opção: "))
     return escolha
 
@@ -152,10 +151,14 @@ def calcularDeterminante(matriz):
         return print(f"\nNecessário ser uma matriz quadrada 2x2 ou 3x3")
 
 def calcularMultiplicaçãoAxB(matriz, matriz2):
-    return print(np.dot(matriz, matriz2))
-
-def calcularMultiplicaçãoBxA(matriz2, matriz):
-    return print(np.dot(matriz2, matriz))
+    ordemResultado = [
+        [0 for _ in range(len(matriz2[0]))] for _ in range(len(matriz))
+    ] 
+    for i in range(len(matriz)):
+        for j in range(len(matriz2[0])):
+            for k in range(len(matriz2)):
+                ordemResultado[i][j] += matriz[i][k] * matriz2[k][j]
+    return ordemResultado
 
 def matrizTransposta(matriz):
     matrizT = []
@@ -253,7 +256,7 @@ while True:
             print(f"\nMatriz:")
             gerarMatriz(m, linhasA)
             ma = menuMatriz()
-            if ma == 5:
+            if ma == 4:
                 print(f"\nVoltando...")
                 break
             elif ma == 1:
@@ -274,23 +277,8 @@ while True:
                 gerarMatriz(m2, linhasB)
                 print(f"\nMultiplicação de A x B:")
                 calcularMultiplicaçãoAxB(m, m2)
+                gerarMatriz(calcularMultiplicaçãoAxB(m, m2), linhasB)
             elif ma == 3:
-                while True:
-                    linhasB = int(input(f"\nInforme o numero de linhas da matriz B: "))
-                    if linhasB != colunasA:
-                        print("O numero de linhas da matriz B tem que ser igual o número de colunas da matriz A")
-                        continue
-                    else:
-                        break
-                colunasB = int(input(f"\nInforme o numero de colunas da matriz B: "))
-                m2 = criarMatriz(linhasB, colunasB)
-                print(f"\nMatriz A:")
-                gerarMatriz(m, linhasA)
-                print(f"\nMatriz B:")
-                gerarMatriz(m2, linhasB)
-                print(f"\nMultiplicação de B x A:")
-                calcularMultiplicaçãoBxA(m2, m)
-            elif ma == 4:
                 print(f"\nMatriz Transposta:")
                 matrizTransposta(m)
         continue
