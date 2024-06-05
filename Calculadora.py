@@ -29,7 +29,7 @@ def menuFuncaoSegundoGrau():
     escolha = int(input("Escolha uma opção: "))
     return escolha
 
-def menuFuncaoExpondencial():
+def menuFuncaoExponencial():
     print(f"\n1 - Crescente ou Decrescente")
     print("2 - Calcular em Função de x")
     print("3 - Gráfico")
@@ -195,16 +195,12 @@ while True:
                 break
             elif co == 1:
                 subconjunto(a, b)
-                continue
             elif co == 2:
                 print(f"\nA união dos conjuntos A e B resulta em: {uniaoInterseccaoDiferenca(a, b, 1)}")
-                continue
             elif co == 3:
                 print(f"\nA intersecção dos conjuntos A e B resulta em: {uniaoInterseccaoDiferenca(a, b, 2)}")
-                continue
             elif co == 4:
                 uniaoInterseccaoDiferenca(a, b, 3)
-                continue
         continue
     elif op == 2:
         fa = float(input(f"\nDigite o valor de a, na função f(x) = ax^2 + bx + c: "))
@@ -236,7 +232,7 @@ while True:
                 print("\nFunção inexistente, escolha outro valor")
                 continue
         while True:
-            fe = menuFuncaoExpondencial()
+            fe = menuFuncaoExponencial()
             if fe == 4:
                 print(f"\nVoltando...")
                 break
@@ -263,7 +259,13 @@ while True:
             elif ma == 1:
                 calcularDeterminante(m)
             elif ma == 2:
-                linhasB = int(input(f"\nInforme o numero de linhas da matriz B: "))
+                while True:
+                    linhasB = int(input(f"\nInforme o numero de linhas da matriz B: "))
+                    if linhasB != colunasA:
+                        print("O numero de linhas da matriz B tem que ser igual o número de colunas da matriz A")
+                        continue
+                    else:
+                        break
                 colunasB = int(input(f"\nInforme o numero de colunas da matriz B: "))
                 m2 = criarMatriz(linhasB, colunasB)
                 print(f"\nMatriz A:")
@@ -273,7 +275,13 @@ while True:
                 print(f"\nMultiplicação de A x B:")
                 calcularMultiplicaçãoAxB(m, m2)
             elif ma == 3:
-                linhasB = int(input(f"\nInforme o numero de linhas da matriz B: "))
+                while True:
+                    linhasB = int(input(f"\nInforme o numero de linhas da matriz B: "))
+                    if linhasB != colunasA:
+                        print("O numero de linhas da matriz B tem que ser igual o número de colunas da matriz A")
+                        continue
+                    else:
+                        break
                 colunasB = int(input(f"\nInforme o numero de colunas da matriz B: "))
                 m2 = criarMatriz(linhasB, colunasB)
                 print(f"\nMatriz A:")
